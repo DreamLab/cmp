@@ -22,7 +22,7 @@ function readExternalConsentData(config) {
 					reject(err);
 				} else {
 					try {
-						resolve(data.vendor && decodeConsentData(data.vendor) || undefined);
+						resolve(data.consent && decodeConsentData(data.consent) || undefined);
 					} catch (err) {
 						reject(err);
 					}
@@ -42,6 +42,10 @@ export function init (configUpdates) {
 	return ((config.getConsentData) ? readExternalConsentData(config) : readConsentCookie())
 		.then((consentData) => {
 			const cmpApi = new CmpApi(CMP_ID, CMP_VERSION);
+
+			if (config.decoratePageCallHandler) {
+            	config.decoratePageCallHandler(CmpApi, cmpApi);
+        	}
 
 			// Initialize the store with all of our consent data
 			const store = new Store({
@@ -80,7 +84,7 @@ export function init (configUpdates) {
 			store.subscribe(store => {
 				if (store.isConsentToolShowing !== isConsentToolShowing) {
 					isConsentToolShowing = store.isConsentToolShowing;
-					cmp.notify('onToggleConsentToolShowing', isConsentToolShowing);
+					isConsentToolShowing && config.onConsentToolShowing();
 				}
 			});
 

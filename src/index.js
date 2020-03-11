@@ -10,6 +10,8 @@ import log from "./lib/log";
 import config from "./lib/config";
 import { decodeConsentData } from "./lib/cookie/cookie";
 
+const TCF_CONFIG = '__tcfConfig';
+
 function handleConsentResult(cmp, store = {}, vendorList, consentData = {}) {
 	const { isConsentToolShowing } = store;
 
@@ -50,14 +52,14 @@ function checkConsent(cmp, store) {
 	}
 	else {
 		// config.getVendorList
-		__tcfapi('getVendorList', 2,  (vendorList, success) => {
+		config.getVendorList((vendorList, success) => {
 			if (success) {
 				const timeout = setTimeout(() => {
 					handleConsentResult(cmp, store, vendorList);
 				}, 100);
 
 				// config.getTCData
-				__tcfapi('getTCData', 2, (tcData, success) => {
+				config.getTCData((tcData, success) => {
 					if (success) {
 						let tcStringDecoded;
 
@@ -78,7 +80,7 @@ function checkConsent(cmp, store) {
 
 function start() {
 	// Preserve any config options already set
-	const { config } = window[CMP_GLOBAL_NAME] || {};
+	const config = window[TCF_CONFIG] || {};
 	const configUpdates = {
 		globalConsentLocation: 'https://rasp.mgr.consensu.org/portal.html',
 		...config
