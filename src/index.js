@@ -5,7 +5,6 @@ import 'core-js/fn/array/for-each';
 import 'core-js/fn/array/filter';
 import 'core-js/fn/set';
 import {init} from './lib/init';
-import { CMP_GLOBAL_NAME } from './lib/cmp';
 import log from "./lib/log";
 import config from "./lib/config";
 import { decodeConsentData } from "./lib/cookie/cookie";
@@ -51,36 +50,36 @@ function checkConsent(cmp, store) {
 		log.warn('Cookies are disabled. Ignoring CMP consent check');
 	}
 	else {
-		// config.getVendorList
-		config.getVendorList((vendorList, success) => {
-			if (success) {
-				const timeout = setTimeout(() => {
-					handleConsentResult(cmp, store, vendorList);
-				}, 100);
+		const { getVendorList, getTCData } = config;
 
-				// config.getTCData
-				config.getTCData((tcData, success) => {
-					if (success) {
-						let tcStringDecoded;
+		if (getVendorList) {
+			getVendorList((err, vendorList) => {
+				if (err) {
+					log.error('Failed to get vendor list');
+				} else {
+					const timeout = setTimeout(() => {
+						handleConsentResult(cmp, store, vendorList);
+					}, 100);
 
-						try {
-							tcStringDecoded = decodeConsentData(tcData.tcString);
-						} catch (e) {
-							// error ocurred during decoding TCString
-						} finally {
-							clearTimeout(timeout);
-							handleConsentResult(cmp, store, vendorList, tcStringDecoded);
-						}
+					if (getTCData) {
+						getTCData((tcData, success) => {
+							if (success) {
+								let tcStringDecoded = decodeConsentData(tcData.tcString);
+								clearTimeout(timeout);
+								handleConsentResult(cmp, store, vendorList, tcStringDecoded);
+							}
+						})
 					}
-				});
-			}
-		});
+				}
+			});
+		}
 	}
 }
 
 function start() {
 	// Preserve any config options already set
-	const config = window[TCF_CONFIG] || {};
+	const config  = window[TCF_CONFIG] || {};
+
 	const configUpdates = {
 		globalConsentLocation: 'https://rasp.mgr.consensu.org/portal.html',
 		...config
