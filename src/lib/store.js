@@ -13,34 +13,16 @@ export const SECTION_DETAILS = 1;
 export const SECTION_PURPOSES = 0;
 export const SECTION_VENDORS = 1;
 
-/**
- * Copy a data object and make sure to replace references
- * of Set objects with new ones.
- */
-function copyData(dataObject) {
-	if (typeof dataObject !== 'object') {
-		return dataObject;
-	}
-	const copy = {...dataObject};
-	for (let key in copy) {
-		if (copy.hasOwnProperty(key) && copy[key] instanceof Vector) {
-			copy[key] = new Vector(copy[key]);
-		}
-	}
-	return copy;
-}
-
 export default class Store {
 	constructor({
-		cmpId = 1,
+		cmpId = 280,
 		cmpVersion = 2,
 		cookieVersion = 2,
-		consentData,
-		cmpApi
+		consentData
 	} = {}) {
 		// Keep track of data that has already been persisted
 		consentData = consentData || {};
-		this.persistedConsentData = copyData(consentData);
+		this.persistedConsentData = consentData;
 		const consentLanguage = findLocale().substr(0, 2).toUpperCase();
 		const tcModel = new TCModel();
 		tcModel.cmpId = cmpId;
@@ -58,12 +40,16 @@ export default class Store {
 				consentLanguage
 			});
 
-		this.cmpApi = cmpApi;
-		this.isConsentToolShowing = this.cmpApi.uiVisible = false;
+		this.isConsentToolShowing = false;
 		this.isFooterShowing = false;
 		this.section = SECTION_INTRO;
 		this.subsection = SECTION_PURPOSES;
 		this.hasInitialVendorsRejectionOccured = false;
+	}
+
+	setCmpApi (cmpApi) {
+		this.cmpApi = cmpApi;
+		this.cmpApi.uiVisible = this.isConsentToolShowing;
 	}
 
 	isAllSetTrue = obj => Object.keys(obj).map(key => obj[key]).every((value) => value === true);
@@ -276,7 +262,7 @@ export default class Store {
 		const now = new Date();
 		tcModel.created = tcModel.created || now;
 		tcModel.lastUpdated = now;
-		tcModel.vendorListVersion = vendorListVersion;
+		tcModel.vendorListVersion = tcModel.vendorListVersion_ = vendorListVersion;
 
 		let encodedConsent = encodeConsentData(this.tcModel);
 
