@@ -14,6 +14,7 @@ const defaultConfig = {
 	setConsentData: null,
 	getVendorList: null,
 	decoratePageCallHandler: null,
+	setPageCallHandlerContext: null,
 	getTCData: null,
 	onConsentToolShowing: null,
 	legIntPurposeIds: [],

@@ -53,23 +53,31 @@ function checkConsent(cmp, store) {
 		const { getVendorList, getTCData } = config;
 
 		if (getVendorList) {
-			getVendorList((err, vendorList) => {
+			getVendorList((vendorList, err) => {
 				if (err) {
 					log.error('Failed to get vendor list');
 				} else {
 					const timeout = setTimeout(() => {
+						console.log("TIMEOUT")
 						handleConsentResult(cmp, store, vendorList);
 					}, 100);
-
-					if (getTCData) {
-						getTCData((tcData, success) => {
-							if (success) {
-								let tcStringDecoded = decodeConsentData(tcData.tcString);
-								clearTimeout(timeout);
-								handleConsentResult(cmp, store, vendorList, tcStringDecoded);
-							}
-						});
-					}
+					window.__tcfapi('getTCData', 2, (tcData, success) => {
+						if (success) {
+							console.log("GET TC DATA");
+							let tcStringDecoded = decodeConsentData(tcData.tcString);
+							clearTimeout(timeout);
+							handleConsentResult(cmp, store, vendorList, tcStringDecoded);
+						}
+					}, undefined, true);
+					// if (getTCData) {
+					// 	getTCData((tcData, success) => {
+					// 		if (success) {
+					// 			let tcStringDecoded = decodeConsentData(tcData.tcString);
+					// 			clearTimeout(timeout);
+					// 			handleConsentResult(cmp, store, vendorList, tcStringDecoded);
+					// 		}
+					// 	});
+					// }
 				}
 			});
 		}
