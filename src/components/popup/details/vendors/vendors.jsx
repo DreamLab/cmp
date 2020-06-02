@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import style from './vendors.less';
 import Switch from '../../../switch/switch';
+import ExternalLinkIcon from "../../../externallinkicon/externallinkicon";
 import Label from "../../../label/label";
 import Vendor from './vendor'
 
@@ -153,13 +154,39 @@ export default class Vendors extends Component {
 										  specialFeatures: specialFeatureIds=[] }, index) => (
 							<tr key={id} class={index % 2 === 1 ? style.even : ''}>
 								<td>
-									<Vendor name={name}
-											policyUrl={policyUrl}
-											purposes={this.getActiveAttributesNameElements(purposes, purposeIds, 'purposes.purpose')}
-											legIntPurposes={this.getActiveAttributesNameElements(purposes, legIntPurposes, 'purposes.purpose')}
-											features={this.getActiveAttributesNameElements(features, featureIds, 'features.feature')}
-											specialPurposes={this.getActiveAttributesNameElements(specialPurposes, specialPurposeIds, 'specialPurposes.purpose')}
-											specialFeatures={this.getActiveAttributesNameElements(specialFeatures, specialFeatureIds, 'specialFeatures.feature')}/>
+									<div className={style.vendorName}>
+										{name}
+										{policyUrl &&
+										<a href={policyUrl} className={style.policy} target='_blank'><ExternalLinkIcon/></a>}
+									</div>
+									<div className={style.vendorDescription}>
+										{purposes && !!purposes.length &&
+										<span>
+											<b><LocalLabel localizeKey='purposes'>Purposes</LocalLabel></b>{': '}
+																	{purposes}{'. '}
+										</span>}
+																{legIntPurposes && !!legIntPurposes.length &&
+																<span>
+											<b><LocalLabel
+												localizeKey='legitimateInterestPurposes'>Legitimate interest purposes</LocalLabel></b>{': '}
+																	{legIntPurposes}{'. '}
+										</span>}
+																{specialPurposes && !!specialPurposes.length &&
+																<span>
+											<b><LocalLabel localizeKey='specialPurposes'>Special purposes</LocalLabel></b>{': '}
+																	{specialPurposes}{'. '}
+										</span>}
+																{features && !!features.length &&
+																<span>
+											<b><LocalLabel localizeKey='features'>Features</LocalLabel></b>{': '}
+																	{features}{'. '}
+										</span>}
+																{specialFeatures && !!specialFeatures.length &&
+																<span>
+											<b><LocalLabel localizeKey='specialFeatures'>Special features</LocalLabel></b>{': '}
+																	{specialFeatures}{'. '}
+										</span>}
+									</div>
 								</td>
 								{editingConsents && legIntPurposes.length &&
 									<td class={style.vendorCenterSmall}>
