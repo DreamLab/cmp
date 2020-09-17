@@ -73,20 +73,20 @@ div.vendors {
 	  	text-align: center;
 	  	min-width: 60px;
 
-	 	@media @smartphone {
-			min-width: 65px;
+	  	span:first-child {
+		  	display: inline-block;
+			width: 100%;
+		}
 
+		& > th {
 			span:first-child {
 				display: inline-block;
 				width: 100%;
 			}
+		}
 
-		   	& > th {
-				span:first-child {
-					display: inline-block;
-					width: 100%;
-				}
-			}
+	 	@media @smartphone {
+			min-width: 65px;
 	  	}
 	}
 	table {
