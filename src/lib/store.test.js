@@ -231,43 +231,30 @@ describe('store', () => {
 		});
 	});
 
-	it('remove consents for vendors removed from current vendor list while user save consent', (done) => {
-		const tcModel = new TCModel();
-		tcModel.cmpId = 280;
-		tcModel.cmpVersion = 2;
-		tcModel.gvl = new GVL(VENDOR_LIST);
+	it('remove consents for vendors removed from current vendor list while user save consent', () => {
+		const persistedConsentCookie = 'CO-jkXPO-jkXPEYACAENBkCAAAAAAAAAAAAAAFCCAAoAQAAA.IAFPHAAA.YAAAAAAAAAAA';
 
-		setTimeout(() => {
-			tcModel.vendorConsents.set([3, 9]);
-			tcModel.vendorLegitimateInterests.set([2, 9]);
-
-			const encoded = encodeConsentData(tcModel);
-
-			const store = new Store({
-				cmpId: 280,
-				consentString: encoded,
-			});
-
-			store.setCmpApi(cmpApi);
-			store.updateVendorList(VENDOR_LIST);
-
-			const persistedConsentData = store.persistedConsentData;
-
-			expect(persistedConsentData.vendorConsents.has(9)).to.be.true;
-			expect(persistedConsentData.vendorLegitimateInterests.has(9)).to.be.true;
-
-			store.persist();
-
-			expect(persistedConsentData.vendorConsents.has(9)).to.be.false;
-			expect(persistedConsentData.vendorLegitimateInterests.has(9)).to.be.false;
-
-			done();
+		const store = new Store({
+			cmpId: 280,
+			consentString: persistedConsentCookie,
 		});
+		store.setCmpApi(cmpApi);
+		store.updateVendorList(VENDOR_LIST);
+
+		const persistedConsentData = store.persistedConsentData;
+
+		expect(persistedConsentData.vendorConsents.has(9)).to.be.true;
+		expect(persistedConsentData.vendorLegitimateInterests.has(9)).to.be.true;
+
+		store.persist();
+
+		expect(persistedConsentData.vendorConsents.has(9)).to.be.false;
+		expect(persistedConsentData.vendorLegitimateInterests.has(9)).to.be.false;
 	});
 
 	it('selects vendor IDs', () => {
 		const store = new Store({
-			cmpId: CMP_ID,
+			cmpId: CMP_ID
 		});
 
 		store.setCmpApi(cmpApi);
