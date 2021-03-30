@@ -28,6 +28,7 @@ export default class Footer extends Component {
 	};
 
 	render(props) {
+		console.log('teeeeest');
 		const { store } = props;
 		const { isFooterShowing } = store;
 

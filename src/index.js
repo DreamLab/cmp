@@ -15,6 +15,7 @@ import log from "./lib/log";
 import config from "./lib/config";
 import { decodeConsentData, readConsentCookie, applyDecodeFix } from "./lib/cookie/cookie";
 import {fetchGlobalVendorList} from "./lib/vendor";
+import { fetchTranslation } from './lib/translations'
 import Promise from "promise-polyfill";
 
 const TCF_CONFIG = '__tcfConfig';
@@ -61,6 +62,8 @@ const handleConsentResult = (...args) => {
 
 
 const shouldDisplay = () => {
+	const a = fetchTranslation().then((json) => console.log(json))
+
 	return new Promise((resolve) => {
 		if (!window.navigator.cookieEnabled) {
 			const msg = 'Cookies are disabled. Ignoring CMP consent check';
@@ -75,7 +78,9 @@ const shouldDisplay = () => {
 			};
 
 			const { getVendorList, getConsentData, getConsentDataTimeout } = config;
+			console.log(config);
 			if (getVendorList) {
+				// dodatkowy klucz "translation" do tłumaczcenia
 				getVendorList((err, vendorList) => {
 					if (err) {
 						log.error('Failed to get vendor list');
@@ -85,7 +90,7 @@ const shouldDisplay = () => {
 						const timeout = setTimeout(() => {
 							resolve({ display: false });
 						}, getConsentDataTimeout);
-
+						// tutaj zapiąć fetchTranslation()
 						if (getConsentData) {
 							getConsentData((err, data) => {
 								if (err) {
@@ -155,6 +160,7 @@ const displayUI = (tcfApi, result) => {
 };
 
 function readExternalConsentData(config) {
+	console.log('READ');
 	return new Promise((resolve, reject) => {
 		try {
 			config.getConsentData((err, data) => {
@@ -186,11 +192,13 @@ function start() {
 	};
 
 	config.update(configUpdates);
-
+	console.log("START");
 	Promise.all([
 		shouldDisplay(),
-		config.getConsentData ? readExternalConsentData(config) : readConsentCookie()
-	]).then(([displayOptions, consentString]) => {
+		// z vendorlisty odczytać tłumaczenie (jakieś dane)
+		config.getConsentData ? readExternalConsentData(config) : readConsentCookie(),
+
+	]).then(([displayOptions, consentString, gdpr_translation]) => {
 		initializeStore(consentString, displayOptions.display).then(() => {
 			displayUI(window.__tcfapi, displayOptions);
 		}).catch(err => {

@@ -1,25 +1,7 @@
 import Promise from 'promise-polyfill';
 import config from './config';
 import log from './log';
-
-function fetch(url) {
-	return new Promise((resolve, reject) => {
-		const xhr = new XMLHttpRequest();
-		xhr.onload = () => {
-			resolve({
-				json: () => JSON.parse(xhr.responseText)
-			});
-		};
-		xhr.onerror = () => {
-			reject(new TypeError('Network request failed'));
-		};
-		xhr.ontimeout = () => {
-			reject(new TypeError('Network request failed'));
-		};
-		xhr.open('GET', url, true);
-		xhr.send(null);
-	});
-}
+import { fetch_url } from './helpers';
 
 /**
  * Fetch the global vendor list if the location is configured
@@ -48,7 +30,7 @@ function fetchGlobalVendorList() {
 		});
 	}
 	return (globalVendorListLocation ?
-		fetch(globalVendorListLocation) :
+		fetch_url(globalVendorListLocation) :
 		Promise.reject('Missing globalVendorListLocation'))
 		.then(res => res.json())
 		.catch(err => {

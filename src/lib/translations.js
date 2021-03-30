@@ -1,4 +1,39 @@
 import replaceMacros from './macros';
+import { fetch_url } from './helpers'
+import Promise from 'promise-polyfill';
+import log from "./log";
+
+
+/**
+ * Fetch translation for given network and
+ */
+function fetchTranslation(vendorList){
+	if (typeof vendorList.translation === 'undefined') {
+		return Promise.reject('Missing vendorList object')
+	} else {
+		console.log('Fetching translation');
+		return fetch_url('https://ocdn.eu/cmp/gdpr/4178463/28/1616495767660ee/translation.json')
+			.then(res => res.json())
+			.catch(err => {
+				if (err.message === 'Not found'){
+					fetch_url('https://ocdn.eu/cmp/gdpr/4178463/28/1616495767660/translation.json')
+						.then(res => res.json())
+						.catch(err => {
+							log.error(`Failed to load translation`, err);
+						})
+				} else {
+					log.error(`Failed to load translation`, err);
+				}
+
+			});
+	}
+	return
+
+
+
+
+}
+
 
 const de = JSON.stringify({
 	intro: {
@@ -972,4 +1007,8 @@ export default {
 	de_blick: JSON.parse(replaceMacros(de, 'de_blick')),
 	// RASCH titles
 	de_rasch: JSON.parse(replaceMacros(de, 'de_rasch'))
+};
+
+export {
+	fetchTranslation
 };
