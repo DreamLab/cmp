@@ -89,7 +89,7 @@ const shouldDisplay = () => {
 							'id': 28,
 							'network': '4178463',
 							'pattern': 'network/id/version',
-							'languages': ['pl-pl', 'en-en', 'de-de']
+							'languages': ['pl', 'en', 'de']
 						};
 						translations.setConfig(vendorList.translation);
 						translations.fetchTranslation()

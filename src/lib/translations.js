@@ -19,7 +19,9 @@ class Translations {
 			try {
 				if (!lang) {
 					const browserLang = findLocale();
-					lang = (this.languages.includes(browserLang)) ? browserLang : this.languages[0];
+					const [language] = browserLang.split('-');
+					const availableLang = this.languages.map(el => el.split('-')[0]);
+					lang = (availableLang.includes(language)) ? language : this.languages[0];
 				}
 				const url = this.prepareUrl(lang);
 				return fetch(url)
