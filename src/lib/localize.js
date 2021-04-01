@@ -16,10 +16,6 @@ export function findLocale() {
 
 export class Localize {
 	constructor(localizedData = {...translations, ...config.localization}) {
-	// constructor(localizedData = {...translations, ...config.localization}) {
-		console.log('...translations');
-		console.log(store.translation);
-		console.log(config.localization);
 		const localizedMap = this.processLocalized(localizedData);
 		const currentLocal = findLocale();
 		const [language] = currentLocal.split('-');
@@ -27,11 +23,6 @@ export class Localize {
 			...localizedMap[language],
 			...localizedMap[currentLocal]
 		};
-		console.log('localizedData');
-		console.log(localizedData);
-		console.log('localizedMap');
-		console.log(localizedMap);
-
 
 	}
 

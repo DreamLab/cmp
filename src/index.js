@@ -62,7 +62,6 @@ const handleConsentResult = (...args) => {
 
 
 const shouldDisplay = () => {
-	const a = fetchTranslation().then((json) => console.log(json))
 
 	return new Promise((resolve) => {
 		if (!window.navigator.cookieEnabled) {
@@ -79,7 +78,6 @@ const shouldDisplay = () => {
 			};
 
 			const { getVendorList, getConsentData, getConsentDataTimeout } = config;
-			console.log(config);
 			//Mock
 			const tr = {
 				"version": 1234,
@@ -90,7 +88,6 @@ const shouldDisplay = () => {
 			}
 			let translation;
 			if (getVendorList) {
-				// dodatkowy klucz "translation" do tłumaczcenia
 				getVendorList((err, vendorList) => {
 					if (err) {
 						log.error('Failed to get vendor list');
@@ -179,7 +176,6 @@ const displayUI = (tcfApi, result) => {
 };
 
 function readExternalConsentData(config) {
-	console.log('READ');
 	return new Promise((resolve, reject) => {
 		try {
 			config.getConsentData((err, data) => {
