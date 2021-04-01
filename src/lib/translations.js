@@ -9,13 +9,14 @@ import log from "./log";
  * Fetch translation for given network and
  */
 function fetchTranslation(translation) {
-	translation = {
-			"version": 1234,
-			"id": 1,
-			"network": "1234567",
-			"pattern": "network/lang/id/version",
-			"languages": ["pl-pl", "en-en", "de-de"]
-	}
+	//MOCK
+	// translation = {
+	// 		"version": 1234,
+	// 		"id": 1,
+	// 		"network": "1234567",
+	// 		"pattern": "network/lang/id/version",
+	// 		"languages": ["pl-pl", "en-en", "de-de"]
+	// }
 
 	// find locacl jak jest jezyk to pobieram a jak nie to peirwsyz lepszy
 	if (typeof translation === 'undefined') {
@@ -27,9 +28,7 @@ function fetchTranslation(translation) {
 			.replace('lang', translation_lang)
 			.replace('id', translation.id)
 			.replace('version', translation.version)
-		console.log(url);
-		console.log('Fetching translation');
-		return fetch_url('https://ocdn.eu/cmp/gdpr/4178463/28/1616495767660ee/translation.json')
+		return fetch_url('https://ocdn.eu/cmp/gdpr/4178463/28/1616495767660/translation.json')
 			.then(res => res.json())
 			.catch(err => {
 				log.error(`Failed to load translation`, err);
@@ -1013,6 +1012,5 @@ export default {
 };
 
 export {
-	fetchTranslation,
-	findLocale
+	fetchTranslation
 };

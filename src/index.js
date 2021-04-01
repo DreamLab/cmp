@@ -71,14 +71,24 @@ const shouldDisplay = () => {
 			const result = handleConsentResult();
 			resolve(result);
 		} else {
-			const finish = (timeout, vendorList, consentData) => {
+			const finish = (timeout, vendorList, consentData, translation ) => {
 				clearTimeout(timeout);
 				const result = handleConsentResult(vendorList, consentData);
+				result.translation = translation
 				resolve(result);
 			};
 
 			const { getVendorList, getConsentData, getConsentDataTimeout } = config;
 			console.log(config);
+			//Mock
+			const tr = {
+				"version": 1234,
+				"id": 1,
+				"network": "1234567",
+				"pattern": "network/lang/id/version",
+				"languages": ["pl-pl", "en-en", "de-de"]
+			}
+			let translation;
 			if (getVendorList) {
 				// dodatkowy klucz "translation" do tłumaczcenia
 				getVendorList((err, vendorList) => {
@@ -91,20 +101,29 @@ const shouldDisplay = () => {
 							resolve({ display: false });
 						}, getConsentDataTimeout);
 						// tutaj zapiąć fetchTranslation()
-						if (getConsentData) {
-							getConsentData((err, data) => {
-								if (err) {
-									finish(timeout, vendorList);
-								} else {
-									try {
-										const tcStringDecoded = decodeConsentData(data.consent);
-										finish(timeout, vendorList, tcStringDecoded);
-									} catch (e) {
-										finish(timeout, vendorList);
-									}
+						translation = fetchTranslation(tr)
+							.then(result => {
+								translation = result
+								if (getConsentData) {
+									getConsentData((err, data) => {
+										if (err) {
+											finish(timeout, vendorList);
+										} else {
+											try {
+												const tcStringDecoded = decodeConsentData(data.consent);
+												finish(timeout, vendorList, tcStringDecoded, translation);
+											} catch (e) {
+												finish(timeout, vendorList);
+											}
+										}
+									});
 								}
-							});
-						}
+							})
+							.catch(() => {
+									const result = handleConsentResult();
+									resolve(result);
+								}
+							)
 					}
 				});
 			} else {
@@ -192,14 +211,13 @@ function start() {
 	};
 
 	config.update(configUpdates);
-	console.log("START");
 	Promise.all([
 		shouldDisplay(),
 		// z vendorlisty odczytać tłumaczenie (jakieś dane)
 		config.getConsentData ? readExternalConsentData(config) : readConsentCookie(),
 
-	]).then(([displayOptions, consentString, gdpr_translation]) => {
-		initializeStore(consentString, displayOptions.display).then(() => {
+	]).then(([displayOptions, consentString]) => {
+		initializeStore(consentString, displayOptions.display, displayOptions.translation).then(() => {
 			displayUI(window.__tcfapi, displayOptions);
 		}).catch(err => {
 			log.error('Failed to initialize CMP store', err);
