@@ -11,12 +11,12 @@ import 'core-js/fn/number/is-integer';
 import 'core-js/fn/symbol';
 import 'core-js/fn/string/repeat';
 import { init as initializeStore } from './lib/init';
-import log from "./lib/log";
-import config from "./lib/config";
-import { decodeConsentData, readConsentCookie, applyDecodeFix } from "./lib/cookie/cookie";
-import {fetchGlobalVendorList} from "./lib/vendor";
-import { fetchTranslation } from './lib/translations'
-import Promise from "promise-polyfill";
+import log from './lib/log';
+import config from './lib/config';
+import { decodeConsentData, readConsentCookie, applyDecodeFix } from './lib/cookie/cookie';
+import { fetchGlobalVendorList } from './lib/vendor';
+import { translations } from './lib/translations';
+import Promise from 'promise-polyfill';
 
 const TCF_CONFIG = '__tcfConfig';
 
@@ -42,19 +42,19 @@ const handleConsentResult = (...args) => {
 
 	if (!created) {
 		log.debug('No consent data found. Showing consent tool');
-		displayOptions = {display: true, command: 'showConsentTool'};
+		displayOptions = { display: true, command: 'showConsentTool' };
 	} else if (!listVersion) {
 		log.debug('Could not determine vendor list version. Not showing consent tool');
 		displayOptions = { display: false };
 	} else if (vendorListVersion !== listVersion) {
 		log.debug(`Consent found for version ${vendorListVersion}, but received vendor list version ${listVersion}. Showing consent tool`);
-		displayOptions = {display: true, command: 'showConsentTool'};
+		displayOptions = { display: true, command: 'showConsentTool' };
 	} else if (consentPolicyVersion !== listPolicyVersion) {
 		log.debug(`Consent found for policy ${consentPolicyVersion}, but received vendor list with policy ${consentPolicyVersion}. Showing consent tool`);
-		displayOptions = {display: true, command: 'showConsentTool'};
+		displayOptions = { display: true, command: 'showConsentTool' };
 	} else {
 		log.debug('Consent found. Not showing consent tool. Show footer when not all consents set to true');
-		displayOptions = {display: false, command: 'showFooter'};
+		displayOptions = { display: false, command: 'showFooter' };
 	}
 
 	return displayOptions;
@@ -62,8 +62,6 @@ const handleConsentResult = (...args) => {
 
 
 const shouldDisplay = () => {
-	const a = fetchTranslation().then((json) => console.log(json))
-
 	return new Promise((resolve) => {
 		if (!window.navigator.cookieEnabled) {
 			const msg = 'Cookies are disabled. Ignoring CMP consent check';
@@ -71,39 +69,36 @@ const shouldDisplay = () => {
 			const result = handleConsentResult();
 			resolve(result);
 		} else {
-			const finish = (timeout, vendorList, consentData, translation ) => {
+			const finish = (timeout, vendorList, consentData) => {
 				clearTimeout(timeout);
 				const result = handleConsentResult(vendorList, consentData);
-				result.translation = translation
 				resolve(result);
 			};
 
 			const { getVendorList, getConsentData, getConsentDataTimeout } = config;
-			console.log(config);
-			//Mock
-			const tr = {
-				"version": 1234,
-				"id": 1,
-				"network": "1234567",
-				"pattern": "network/lang/id/version",
-				"languages": ["pl-pl", "en-en", "de-de"]
-			}
-			let translation;
+
 			if (getVendorList) {
-				// dodatkowy klucz "translation" do tłumaczcenia
 				getVendorList((err, vendorList) => {
 					if (err) {
 						log.error('Failed to get vendor list');
 						const result = handleConsentResult();
 						resolve(result);
 					} else {
-						const timeout = setTimeout(() => {
-							resolve({ display: false });
-						}, getConsentDataTimeout);
-						// tutaj zapiąć fetchTranslation()
-						translation = fetchTranslation(tr)
-							.then(result => {
-								translation = result
+						//ToDo remove assigment below before go to release
+						vendorList.translation = {
+							'version': 1616495767660,
+							'id': 28,
+							'network': '4178463',
+							'pattern': 'network/id/version',
+							'languages': ['pl-pl', 'en-en', 'de-de']
+						};
+						translations.setConfig(vendorList.translation);
+						translations.fetchTranslation()
+							.then(() => {
+								const timeout = setTimeout(() => {
+									resolve({ display: false });
+								}, getConsentDataTimeout);
+
 								if (getConsentData) {
 									getConsentData((err, data) => {
 										if (err) {
@@ -111,7 +106,7 @@ const shouldDisplay = () => {
 										} else {
 											try {
 												const tcStringDecoded = decodeConsentData(data.consent);
-												finish(timeout, vendorList, tcStringDecoded, translation);
+												finish(timeout, vendorList, tcStringDecoded);
 											} catch (e) {
 												finish(timeout, vendorList);
 											}
@@ -120,10 +115,9 @@ const shouldDisplay = () => {
 								}
 							})
 							.catch(() => {
-									const result = handleConsentResult();
-									resolve(result);
-								}
-							)
+								const result = handleConsentResult();
+								resolve(result);
+							});
 					}
 				});
 			} else {
@@ -179,7 +173,6 @@ const displayUI = (tcfApi, result) => {
 };
 
 function readExternalConsentData(config) {
-	console.log('READ');
 	return new Promise((resolve, reject) => {
 		try {
 			config.getConsentData((err, data) => {
@@ -213,11 +206,10 @@ function start() {
 	config.update(configUpdates);
 	Promise.all([
 		shouldDisplay(),
-		// z vendorlisty odczytać tłumaczenie (jakieś dane)
-		config.getConsentData ? readExternalConsentData(config) : readConsentCookie(),
+		config.getConsentData ? readExternalConsentData(config) : readConsentCookie()
 
 	]).then(([displayOptions, consentString]) => {
-		initializeStore(consentString, displayOptions.display, displayOptions.translation).then(() => {
+		initializeStore(consentString, displayOptions.display).then(() => {
 			displayUI(window.__tcfapi, displayOptions);
 		}).catch(err => {
 			log.error('Failed to initialize CMP store', err);

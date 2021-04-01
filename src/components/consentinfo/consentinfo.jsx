@@ -1,10 +1,9 @@
 import { h, Component } from 'preact';
 import Label from '../label/label';
-import { Localize } from '../../lib/localize';
 import style from './consentinfo.less';
+import { translations } from '../../lib/translations';
 
-
-const lookup = new Localize().lookup;
+const lookup = translations.lookup;
 const PREFIX = 'consentInfo';
 
 class LocalLabel extends Label {

@@ -1,41 +1,139 @@
 import replaceMacros from './macros';
-import { fetch_url } from './helpers'
+import { fetch } from './helpers';
 import Promise from 'promise-polyfill';
-import { findLocale } from './localize'
-import log from "./log";
+import { findLocale } from './localize';
+import log from './log';
+import config from './config';
 
-
-/**
- * Fetch translation for given network and
- */
-function fetchTranslation(translation) {
-	//MOCK
-	// translation = {
-	// 		"version": 1234,
-	// 		"id": 1,
-	// 		"network": "1234567",
-	// 		"pattern": "network/lang/id/version",
-	// 		"languages": ["pl-pl", "en-en", "de-de"]
-	// }
-
-	// find locacl jak jest jezyk to pobieram a jak nie to peirwsyz lepszy
-	if (typeof translation === 'undefined') {
-		return Promise.reject('Missing vendorList object')
-	} else {
-		const browser_lan = findLocale();
-		const translation_lang = (translation.languages.includes(browser_lan)) ? browser_lan : translation.languages[0]
-		const url = translation.pattern.replace('network', translation.network)
-			.replace('lang', translation_lang)
-			.replace('id', translation.id)
-			.replace('version', translation.version)
-		return fetch_url('https://ocdn.eu/cmp/gdpr/4178463/28/1616495767660/translation.json')
-			.then(res => res.json())
-			.catch(err => {
+class Translations {
+	fetchTranslation = lang => {
+		return new Promise((resolve, reject) => {
+			if (!config.translationFetch) {
+				this.addTranslation({...embedTransaltion, ...config.localization});
+				return resolve();
+			}
+			if (!this.url) {
+				log.error('Failed to load translation - missing configuration on vendor list');
+				return reject('Failed to load translation - missing configuration on vendor list');
+			}
+			try {
+				if (!lang) {
+					const browserLang = findLocale();
+					lang = (this.languages.includes(browserLang)) ? browserLang : this.languages[0];
+				}
+				const url = this.prepareUrl(lang);
+				return fetch(url)
+					.then(result => {
+						const data = {};
+						result.json().forEach(el => {
+							data[el.lang] = el.body;
+						});
+						this.addTranslation(data, lang);
+						return resolve();
+					})
+					.catch(err => {
+						log.error('Failed to load translation during fetching data', err);
+						reject();
+					});
+			} catch (err) {
 				log.error(`Failed to load translation`, err);
-			});
-	}
-}
+				reject();
+			}
+		});
+	};
 
+	setConfig = configuration => {
+		if (!configuration) {
+			return;
+		}
+		this.patternUrl = configuration.pattern;
+		this.languages = configuration.languages;
+		this.network = configuration.network;
+		this.id = configuration.id;
+		this.version = configuration.version;
+		this.setUrl();
+	};
+
+	setUrl = () => {
+		const path = this.patternUrl.replace('network', this.network)
+			.replace('id', this.id)
+			.replace('version', this.version);
+		this.url = config.translationUrl + path + '/translation.json';
+	};
+
+	prepareUrl = lang => {
+		return this.url.replace('lang', lang);
+	};
+
+	addTranslation = (localizedData, lang) => {
+		const parsed = this.processLocalized(localizedData);
+		this.localizedValues = { ...this.localizedValues, ...parsed };
+		this.initCurrentLang(lang);
+	};
+
+	initCurrentLang = current => {
+		//currentLocal has been set
+		if (!current && this.currentLang) {
+			return;
+		}
+
+		if (current && this.localizedValues.hasOwnProperty(current)) {
+			this.currentLang = current;
+			return;
+		}
+		const currentLocal = findLocale();
+		if (this.localizedValues.hasOwnProperty(currentLocal)) {
+			this.currentLang = currentLocal;
+			return;
+		}
+		const [language] = currentLocal.split('-');
+		if (this.localizedValues.hasOwnProperty(language)) {
+			this.currentLang = language;
+			return;
+		}
+		//default value
+		this.currentLang = Object.keys(this.localizedValues)[0];
+	};
+
+	lookup = key => {
+		return this.localizedValues[this.currentLang][key];
+	};
+
+	processLocalized = (data = {}) => {
+		const locales = Object.keys(data);
+		return locales.reduce((acc, locale) => {
+			const [language] = locale.toLowerCase().split('-');
+			return {
+				...acc,
+				[locale]: {
+					...acc[locale],
+					...this.flattenObject(data[language]),
+					...this.flattenObject(data[locale])
+				}
+			};
+		}, {});
+	};
+
+	flattenObject = (data) => {
+		const flattened = {};
+
+		function flatten(part, prefix) {
+			Object.keys(part).forEach(key => {
+				const prop = prefix ? `${prefix}.${key}` : key;
+				const val = part[key];
+
+				if (typeof val === 'object') {
+					return flatten(val, prop);
+				}
+
+				flattened[prop] = val;
+			});
+		}
+
+		flatten(data);
+		return flattened;
+	};
+}
 
 const de = JSON.stringify({
 	intro: {
@@ -266,14 +364,13 @@ _POLICY_`
 	}
 });
 
-
 /**
  * The default set of translated pieces of text indexed by locale.
  * Values from window.__tcfConfig.localization will override these
  * per locale.  Empty values will use the english value provided
  * inline in each component.
  */
-export default {
+const embedTransaltion = {
 	pl: {
 		intro: {
 			title: 'Szanowna Użytkowniczko, Szanowny Użytkowniku,',
@@ -1011,6 +1108,4 @@ export default {
 	de_rasch: JSON.parse(replaceMacros(de, 'de_rasch'))
 };
 
-export {
-	fetchTranslation
-};
+export const translations = new Translations();

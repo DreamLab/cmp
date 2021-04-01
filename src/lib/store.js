@@ -21,7 +21,6 @@ export default class Store {
 		cmpVersion = 2,
 		cookieVersion = 2,
 		consentString,
-		translation
 	} = {}) {
 		// Keep track of data that has already been persisted
 		const consentLanguage = findLocale().substr(0, 2).toUpperCase();
@@ -38,7 +37,6 @@ export default class Store {
 		this.persistedConsentString = isTCFv2Compatible ? consentString : '';
 		this.persistedConsentData = isTCFv2Compatible ? decodedConsentString : {};
 		this.isCustomVendors = false;
-		this.translation = translation
 		this.tcModel = Object.assign(
 			tcModel,
 			this.persistedConsentData,

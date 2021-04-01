@@ -1,10 +1,9 @@
-
-function fetch_url(url) {
+export function fetch(url) {
 	return new Promise((resolve, reject) => {
 		const xhr = new XMLHttpRequest();
 		xhr.onload = () => {
-			if (xhr.readyState === xhr.DONE){
-				if (xhr.status === 404){
+			if (xhr.readyState === xhr.DONE) {
+				if (xhr.status === 404) {
 					reject(new TypeError('Not found'));
 				}
 			}
@@ -22,7 +21,3 @@ function fetch_url(url) {
 		xhr.send(null);
 	});
 }
-
-export {
-	fetch_url
-};

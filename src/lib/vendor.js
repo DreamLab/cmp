@@ -1,7 +1,7 @@
 import Promise from 'promise-polyfill';
 import config from './config';
 import log from './log';
-import { fetch_url } from './helpers';
+import { fetch } from './helpers';
 
 /**
  * Fetch the global vendor list if the location is configured
@@ -30,7 +30,7 @@ function fetchGlobalVendorList() {
 		});
 	}
 	return (globalVendorListLocation ?
-		fetch_url(globalVendorListLocation) :
+		fetch(globalVendorListLocation) :
 		Promise.reject('Missing globalVendorListLocation'))
 		.then(res => res.json())
 		.catch(err => {

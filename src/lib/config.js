@@ -19,7 +19,9 @@ const defaultConfig = {
 	shouldDisplayFooter: null,
 	publisherCountryCode: 'PL',
 	getConsentDataTimeout: 500,
-	purposeOneTreatment: false
+	purposeOneTreatment: false,
+	translationFetch: true,
+	translationUrl: 'https://ocdn.eu/cmp/gdpr/'
 };
 
 class Config {
