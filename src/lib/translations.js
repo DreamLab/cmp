@@ -9,7 +9,7 @@ class Translations {
 	fetchTranslation = lang => {
 		return new Promise((resolve, reject) => {
 			if (!config.translationFetch) {
-				this.addTranslation({...embedTransaltion, ...config.localization});
+				this.addTranslation({ ...embedTransaltion, ...config.localization });
 				return resolve();
 			}
 			if (!this.url) {
@@ -24,10 +24,19 @@ class Translations {
 				const url = this.prepareUrl(lang);
 				return fetch(url)
 					.then(result => {
-						const data = {};
-						result.json().forEach(el => {
-							data[el.lang] = el.body;
-						});
+						const parsed = result.json();
+						let data = {};
+						//ToDo temporary for translations in array
+						if (Array.isArray(parsed)) {
+							parsed.forEach(el => {
+								data[el.lang] = el.body;
+							});
+							return data;
+						}
+						data[lang] = parsed;
+						return data;
+					})
+					.then(data => {
 						this.addTranslation(data, lang);
 						return resolve();
 					})
@@ -72,7 +81,6 @@ class Translations {
 	};
 
 	initCurrentLang = current => {
-		//currentLocal has been set
 		if (!current && this.currentLang) {
 			return;
 		}

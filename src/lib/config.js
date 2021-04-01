@@ -20,7 +20,7 @@ const defaultConfig = {
 	publisherCountryCode: 'PL',
 	getConsentDataTimeout: 500,
 	purposeOneTreatment: false,
-	translationFetch: true,
+	translationFetch: false,
 	translationUrl: 'https://ocdn.eu/cmp/gdpr/'
 };
 
