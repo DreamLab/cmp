@@ -159,7 +159,7 @@ _PRIVACY_LINKS_`,
 			back: 'Zurück',
 			save: 'Speichern und schliessen',
 			menu: 'Allgemeine Informationen',
-			title: `<span class="cmp-translation_detailTitle">Weshalb sammeln wir Ihre Daten?</span>`,
+			title: `<span class="cmp-translations_detailTitle">Weshalb sammeln wir Ihre Daten?</span>`,
 			description: `<p>Wir und/oder unsere Partner sammeln und bearbeiten Ihre Daten, damit unsere Webseiten und Applikationen einwandfrei
 	funktionieren, damit wir unsere Produkte und Dienstleistungen stetig verbessern und Ihren Bedürfnissen anpassen,
 	Trends erkennen, und Statistiken über die Nutzung unserer digitalen Angebote erstellen und auswerten können. Diese
@@ -170,7 +170,7 @@ _PRIVACY_LINKS_`,
 	erfahren Sie unter <a onclick="__tcfapi('showConsentDetailView', 2, function () {}, {tab: 1})">Bearbeitung Ihrer Daten</a></p>
 
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Basierend auf welcher Rechtsgrundlage tun wir dies?</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Basierend auf welcher Rechtsgrundlage tun wir dies?</p>
 <p>Wir und unsere Partner bearbeiten Ihre Daten entweder weil Sie in diese Bearbeitung eingewilligt haben oder weil wir
 	ein berechtigtes Interesse bzw. ein überwiegendes privates Interesse daran haben.</p>
 
@@ -185,11 +185,11 @@ _PRIVACY_LINKS_`,
 	widersprechen.</p>
 
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Welche Technologien nutzen wir?</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Welche Technologien nutzen wir?</p>
 
 <p>Wir benutzen folgende Technologien:</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">a) Cookies</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">a) Cookies</p>
 
 <p>Auf unseren Webseiten und mobilen Applikationen werden Cookies von uns und von Dritten eingesetzt. Ein Cookie ist eine kurze Textdatei, die auf Ihrem Gerät gespeichert wird, wenn Sie eine unserer Webseiten nutzen.</p>
 
@@ -205,17 +205,17 @@ Wir verwenden sowohl funktionale wie auch nicht funktionale Cookies auf unseren 
 <p>Funktionale Cookies sind erforderlich, um die Funktionalität von unseren Webseiten oder Diensten sicherzustellen. Nicht funktionale Cookies sind für die Funktionalität der Webseiten nicht unbedingt erforderlich. Diese Art von Cookies wird dazu benutzt, um Daten über die Webseitennutzung oder die Nutzung der mobilen Applikationen (Sprachpräferenzen, Dauer einer Benutzersitzung usw.) zu erfassen und zu analysieren, damit wir Ihr Lese- und Werbeerlebnis verbessern können.</p>
 
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">b) Logfiles</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">b) Logfiles</p>
 
 <p>Bei der Nutzung von Webseiten oder mobilen Applikationen registrieren die Webserver unpersönliche Nutzungsdaten, sogenannte Logfile. Logfiles geben Auskunft über Ihre IP-Adresse, das verwendete Betriebssystem, Webseiten, die Sie besuchen, Browsertyp und -version, das Datum, die Uhrzeit und die angeforderte Datei. Diese Informationen sind technisch notwendig, um von Ihnen angeforderte Inhalte von Webseiten korrekt auszuliefern und fallen bei der Nutzung des Internets zwingend an. Diese Daten werden getrennt von Ihren eventuell angegebenen Personendaten gespeichert und lassen so keine Rückschlüsse auf Ihre Person zu.</p>
 
 <p>Diese Nutzungsdaten werden von uns statistisch ausgewertet, um unseren Internetauftritt und die dahinterstehende Technik zu optimieren, Trends zu erkennen sowie Angebote und Produkte zu verbessern bzw. bestmöglich auf Ihre Bedürfnisse auszurichten.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">c) Elemente von anderen Webseiten, z.B. Plug-ins</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">c) Elemente von anderen Webseiten, z.B. Plug-ins</p>
 
 <p>Auf unseren Webseiten und mobilen Applikationen können Elemente von Drittanbietern, (z.B. soziale Netzwerke wie Facebook, Apple, Twitter und Youtube) verwendet werden. Wenn Sie ein Element eines Drittanbieters (z.B. «Gefällt mir» Plug-in von Facebook) anklicken, kann automatisch eine Verbindung zu den Servern dieses Drittanbieters hergestellt werden. Dabei können dem Drittanbieter Daten über Ihren Besuch auf unserer Webseiten bzw.. auf einer mobilen Applikation übermittelt werden. Diese Daten können unter Umständen Ihrem Benutzerkonto beim Drittanbieter (z.B. Facebook oder Twitter-Konto) zugeordnet werden. Überdies kann der Drittanbieter Personendaten (Name, Vorname, Kunden ID und E-Mail-Adresse) Ihres Benutzerkontos an _PUBLISHER_ übermitteln, sofern Sie dieser Funktion beim Drittanbieter zugestimmt haben. Informationen zur Erhebung und Nutzung der Daten durch Drittanbieter finden Sie in den Datenschutzhinweisen der entsprechenden Drittanbieter.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">d) Standort-Tracker</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">d) Standort-Tracker</p>
 <p>In unserer mobilen Applikation können wir Ihnen durch die Verwendung von Standortdaten Ihres Gerätes standortbezogene Werbung anzeigen. Sie können diese Funktion jederzeit in der Applikation unter „Einstellungen“ aktivieren oder deaktivieren.</p>`
 		},
 		tab2: {
@@ -364,6 +364,7 @@ _POLICY_`
 	}
 });
 
+
 /**
  * The default set of translated pieces of text indexed by locale.
  * Values from window.__tcfConfig.localization will override these
@@ -400,7 +401,7 @@ const embedTransaltion = {
 				title: 'Szanowna Użytkowniczko, Szanowny Użytkowniku,',
 				description: `<p>Znajdujesz się z szczegółowej sekcji mechanizmu umożliwiającego zarządzanie procesami przetwarzania Twoich danych osobowych na stronach internetowych i innych narzędziach udostępnianych przez podmioty z Grupy Ringier Axel Springer Polska.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Zgoda i inne podstawy przetwarzania danych</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Zgoda i inne podstawy przetwarzania danych</p>
 <p>Jeśli chcesz zgodzić się na przetwarzanie przez <a onclick="__tcfapi('showVendors', 2, function () {})">Zaufanych Partnerów</a> Grupy RAS Polska Twoich danych osobowych, zawierających informacje o odwiedzonych stronach i aplikacjach internetowych, informacje zapisane w plikach cookies w Twoim urządzeniu i jego pamięci podręcznej oraz dane lokalizacyjne generowane przez Twoje urządzenie, w celach marketingowych (obejmujących zautomatyzowaną analizę Twojej aktywności na stronach internetowych i w aplikacjach w celu ustalenia Twoich potencjalnych zainteresowań dla dostosowania reklamy i oferty) w tym na umieszczanie znaczników internetowych (cookies itp.) na Twoich urządzeniach i odczytywanie takich znaczników, kliknij przycisk „Przejdź do serwisu” lub zamknij to okno. Jeśli nie chcesz wyrazić zgody lub ograniczyć jej zakres, kliknij „Ustawienia zaawansowane”. Wyrażenie zgody jest dobrowolne. Możesz edytować zakres zgody (w tym np. udzielić jej dla danej grupy administratorów lub dla danego rodzaju działań), w tym wycofać ją całkowicie, klikając „Ustawienia zaawansowane” lub przechodząc na naszą stronę <a href="https://polityka-prywatnosci.onet.pl/index.html" target="_blank" rel="noopener">polityki prywatności</a>.</p>
 <br>
 <p>Powyższa zgoda dotyczy przetwarzania Twoich danych osobowych w celach marketingowych Zaufanych Partnerów. Zaufani Partnerzy to firmy z obszaru e-commerce i reklamodawcy oraz działające w ich imieniu domy mediowe i podobne organizacje, z którymi Grupa RAS Polska współpracuje lub które polecane są przez międzynarodowe organizacje branżowe takie jak np. organizacja IAB (Interactive Advertising Bureau). Niektórzy z Zaufanych Partnerów mogą przetwarzać Twoje dane w węższym zakresie, niektórzy z nich mogą też przetwarzać te dane w oparciu o inną podstawę niż Twoja zgoda (np. w oparciu o uzasadniony interes administratora). Kompletną listę Zaufanych Partnerów wraz z zakresem danych przetwarzanych przez nich w oparciu o Twoją zgodę lub inną podstawę prawną znajdziesz bezpośrednio pod tym <a href="https://polityka-prywatnosci.onet.pl/index.html" target="_blank" rel="noopener">linkiem</a>.</p>
@@ -414,10 +415,10 @@ const embedTransaltion = {
 <br>
 <p>Przetwarzanie takie nie wymaga dodatkowej zgody z Twojej strony, ale możesz mu się w każdej chwili sprzeciwić. O ile nie zdecydujesz inaczej, dokonując stosownych zmian ustawień w Twojej przeglądarce, podmioty z Grupy RAS Polska będą również instalować na Twoich urządzeniach pliki cookies i podobne oraz odczytywać informacje z takich plików. Bliższe informacje o cookies znajdziesz w akapicie „Cookies” pod koniec tej informacji.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Administrator danych osobowych</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Administrator danych osobowych</p>
 <p>Administratorem Twoich danych osobowych jest podmiot z Grupy RAS Polska, z którego serwisu lub aplikacji korzystasz. Naszą nazwę znajdziesz zawsze na samym dole strony po prawej stronie, a logo na planszy zawierającej niniejszą informację. Informację o powołaniu przez nas inspektora ochrony danych i jego danych kontaktowych znajdziesz też na samym dole strony w polityce prywatności. Administratorami Twoich danych osobowych będą także pozostałe podmioty z Grupy RAS Polska, których pełne dane możesz sprawdzić <a onclick="__tcfapi('showVendors', 2, function () {})">pod tym linkiem</a>. Jeżeli wyrazisz zgodę, o którą wyżej prosimy, administratorami Twoich danych osobowych będą także nasi Zaufani Partnerzy. Listę Zaufanych Partnerów możesz sprawdzić w każdym momencie na stronie naszej <a href="https://polityka-prywatnosci.onet.pl/index.html" target="_blank" rel="noopener">polityki prywatności</a> i tam też zmodyfikować lub cofnąć swoje zgody. Pamiętaj, że cofnięcie zgód uniemożliwi realizację działań, których te zgody dotyczą, a więc np. zamiast otrzymywać treści, które odpowiadają Twoim zainteresowaniom możesz zacząć otrzymywać treści, które nie będą dla Ciebie interesujące.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Podstawa i cel przetwarzania</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Podstawa i cel przetwarzania</p>
 <p> Twoje dane przetwarzamy w następujących celach:</p>
 <br>
 <ul style="list-style-position: inside; list-style-type: disc;">
@@ -428,13 +429,13 @@ const embedTransaltion = {
 <br>
 <p>Twoje dane przetwarzane będą do czasu istnienia podstawy do ich przetwarzania, czyli w przypadku udzielenia zgody do momentu jej cofnięcia, ograniczenia lub innych działań z Twojej strony ograniczających tę zgodę, w przypadku niezbędności danych do wykonania umowy, przez czas jej wykonywania i ewentualnie okres przedawnienia roszczeń z niej (zwykle nie więcej niż 3 lata, a maksymalnie 6 lat), a w przypadku, gdy podstawą przetwarzania danych jest uzasadniony interes administratora, do czasu zgłoszenia przez Ciebie skutecznego sprzeciwu.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Przekazywanie danych</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Przekazywanie danych</p>
 <p>Administratorzy danych mogą powierzać Twoje dane podwykonawcom IT, księgowym, agencjom marketingowym etc. Zrobią to jedynie w niezbędnym zakresie i na podstawie umowy o powierzenie przetwarzania danych zobowiązującej taki podmiot do odpowiedniego zabezpieczenia danych i niekorzystania z nich do własnych celów.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Cookies</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Cookies</p>
 <p>Na naszych stronach i w aplikacjach używamy znaczników internetowych takich jak pliki np. cookie lub local storage do zbierania i przetwarzania danych osobowych w celu personalizowania treści i reklam oraz analizowania ruchu na stronach, aplikacjach i w Internecie. W ten sposób technologię tę wykorzystują również podmioty z Grupy RAS Polska oraz nasi Zaufani Partnerzy, którzy także chcą dopasowywać reklamy do Twoich preferencji. Cookies to dane informatyczne zapisywane w plikach i przechowywane na Twoim urządzeniu końcowym (tj. twój komputer, tablet, smartphone itp.), które przeglądarka wysyła do serwera przy każdorazowym wejściu na stronę z tego urządzenia, podczas gdy odwiedzasz strony w Internecie. Szczegółową informację na temat plików cookie i ich funkcjonowania znajdziesz <a href="https://polityka-prywatnosci.onet.pl/grupa-rasp.html" target="_blank" rel="noopener">pod tym linkiem</a>. Pod tym linkiem znajdziesz także informację o tym jak zmienić ustawienia przeglądarki, aby ograniczyć lub wyłączyć funkcjonowanie plików cookies itp. oraz jak usunąć takie pliki z Twojego urządzenia.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Twoje uprawnienia</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Twoje uprawnienia</p>
 <p>Przysługują Ci następujące uprawnienia wobec Twoich danych i ich przetwarzania przez nas, inne podmioty z Grupy RAS Polska i Zaufanych Partnerów:</p>
 <br>
 <p>1. Jeśli udzieliłeś zgody na przetwarzanie danych możesz ją w każdej chwili wycofać (cofnięcie zgody oczywiście nie uchyli zgodności z prawem przetwarzania już dokonanego na jej podstawie);</p>
@@ -446,7 +447,7 @@ const embedTransaltion = {
 <br>
 <p><a href="https://polityka-prywatnosci.onet.pl/index.html" target="_blank" rel="noopener">Pod tym linkiem</a> znajdziesz szczegółowy opis celów przetwarzania danych dla których możesz udzielić zgód (lub selektywnie bądź całościowo je odwołać), a poniżej prezentujemy ich rodzaje z opisem stworzonym przez IAB Europe:</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Cele:</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Cele:</p>
 <ul style="list-style-position: inside; list-style-type: disc;">
 	<li style="margin-bottom: 10px">
 		1. Przechowywanie informacji na urządzeniu lub dostęp do nich
@@ -574,7 +575,7 @@ const embedTransaltion = {
 	</li>
 </ul>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Funkcje specjalne:</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Funkcje specjalne:</p>
 <ul style="list-style-position: inside; list-style-type: disc;">
 	<li style="margin-bottom: 10px">
 		1. Użycie dokładnych danych geolokalizacyjnych
@@ -761,7 +762,7 @@ const embedTransaltion = {
 				description: `<p>You are in a detailed section of a mechanism allowing to manage the processing of your personal data on websites and other tools made available by entities from the Ringier Axel Springer Polska Group.</p>
 <p> Before you click “Go to website” or close this window, please read this notice in which we ask you to give a voluntary consent for processing of your personal data by our business partners; this notice also contains information about cookies and the processing of your personal data by us and our business partners. <span style="font-weight: bold; display: inline">If you click “Go to website” or close the window by clicking the X sign, it means you consent to the above.</span> You can also refuse consent or limit its scope.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Consent and other grounds for data processing</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Consent and other grounds for data processing</p>
 <p>If you wish to consent to the processing of your personal data, including information about visited websites and internet applications, information saved in cookies on your device and its cache as well as location data generated by your device – by Trusted Partners of the RAS Polska Group for marketing purposes (comprising automated analysis of your activity on the websites and in apps in order to specify your potential interests for the purposes of advertisement alignment and offers), including to the placement of web flags/markers (cookies, etc.) on your device and reading of such flags/markers, click “Go to website” or close this window.</p>
 <p>If you do not want to grant consent or wish to limit its scope, click “Advanced settings”.</p>
 <p>Granting consent is voluntary. You may edit the scope of consent (for example, you may grant it for one group of controllers or for a given type of activity) and also withdraw in entirely, by clicking “Advanced settings” or going to the page of our <a href="https://polityka-prywatnosci.onet.pl/index.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
@@ -772,10 +773,10 @@ const embedTransaltion = {
 <p>A legitimate interest of the controller will only constitute the ground for processing of personal data where such processing is necessary in order to achieve the purpose  resulting from this interest. Existence of a legitimate interest is assessed within a specified time and context in which the data are being collected. It is assessed if a data subject may expect that the controller processes his/her data for a specific purpose and if his/her interests, fundamental rights and, freedoms are in balance with this interest. </p>
 <p>Such processing does not require your additional consent, but you may object to it at any time. If you don’t decide otherwise by making relevant changes to your browser settings, entities from the RAS Polska Group will install cookies and similar files on your devices and read information from such files. More information about cookies can be found in the “Cookies” section at the end of this notice.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Personal data controller</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Personal data controller</p>
 <p>The Controller of your personal data is an entity from the RAS Polska Group, whose website or app you’re using. Our name can always be found at the bottom of a website, on the right side, and our logo on the board containing this information. Information about appointment of data protection officer and contact data to such officer can be found at the bottom of the page in the privacy policy. Controllers of your personal data are also other entities from the RAS Polska Group, which details can be checked via <a href="https://polityka-prywatnosci.onet.pl/grupa-rasp.html" target="_blank" rel="noopener">this link</a>.   If you grant your consent referred to above, controllers of your personal data will also be our <a onclick="__tcfapi('showVendors', 2, function () {})">Trusted Partners</a>. You can check the list of Trusted Partners at any time in our <a href="https://polityka-prywatnosci.onet.pl/index.html" target="_blank" rel="noopener">Privacy Policy</a> and there you will also be able to modify or withdraw your consent. Please bear in mind that withdrawing consent will prevent us from performing activities to which those consents refer, for example instead of receiving content corresponding to your interests you may start receiving content that is of no interest to you.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Grounds and purpose of processing</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Grounds and purpose of processing</p>
 <p > Your data will be processed for the following purposes:</p>
 <ul style="list-style-position: inside; list-style-type: disc;">
 	<li style="margin-bottom: 20px">1. If we enter into a service performance contract with you (for example, a service providing you with the opportunity to get acquainted with one of our services, based on the content of the terms of use of this service), we may process your data in the scope necessary for the performance of this contract. When you create an e-mail account, a contract to supply you with this account authorizes us to process data necessary for supplying you with this account (for example, data provided by you in the account profile). Without this, we would be unable to provide the service to you, and you would be unable to make use of it. Failure to provide such data will prevent us from executing and performing the contract.</li>
@@ -786,13 +787,13 @@ const embedTransaltion = {
 <br>
 <p> Your data will be processed until there are grounds for processing them, which is in the event a consent is granted until it is withdrawn, restricted or until you have taken other steps limiting such consent, if data are necessary for performing a contract – in the period when such contract is being performed or until claims under the contract have become time-barred (usually not longer than 3 years, and 6 years at the most), and where data processing is based on a legitimate interest of the controller, until you have submitted an effective objection.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Data transfer</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Data transfer</p>
 <p> Data controllers may transfer your data to IT subcontractors, accountants, marketing agencies, etc. This will be done only as necessary and on the basis of a data processing agreement which imposes an obligation on such entity to ensure proper data security and to refrain from using such data for their own purposes.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Cookies</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Cookies</p>
 <p> On our websites and in our apps, we use web flags/markers, such as cookies or local storage, for the purpose of collecting and processing personal data in order to customize content and advertisements and to analyze traffic on websites, apps and in the Internet. This technology is also used in this manner by entities from the RAS Polska Group and by our <a onclick="__tcfapi('showVendors', 2, function () {})">Trusted Partners</a> who also wish to customize advertisements to your preferences. Cookies are IT data saved in files and stored on your terminal equipment (i.e. your computer, tablet, smartphone, etc.), which the browser sends to the server upon each entry to the website from a given terminal equipment – when you visit various sites in the Internet. Detailed information about cookies and their operation can be found <a href="https://polityka-prywatnosci.onet.pl/grupa-rasp.html" target="_blank" rel="noopener">at this link</a>. At this address you will also find information on how to change browser settings in order to limit or disable the operation of cookies, etc., and on how to remove such cookies etc. from your device.</p>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Your rights</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Your rights</p>
 <p> You have the following rights in respect of your data and processing of your data by other entities from the RAS Polska Group and by <a onclick="__tcfapi('showVendors', 2, function () {})">Trusted Partners</a>:</p>
 <p>1. If you granted consent for data processing, you may withdraw it at any time (the withdrawal of consent does not affect the lawfulness of processing based on consent before its withdrawal);</p>
 <p>2. You also have the right to demand access to your personal data, rectification of data, erasure or restriction of processing, right to transfer data (data portability), right to object to data processing and the right to lodge a complaint with a supervisory authority, being the President of the Personal Data Protection Office in Poland. <a href="https://polityka-prywatnosci.onet.pl/index.html" target="_blank" rel="noopener">At this address</a>, you will find additional information about data processing and your rights.</p>
@@ -802,7 +803,7 @@ const embedTransaltion = {
 <p style="margin: 25px 0 10px 0">Some of <a onclick="__tcfapi('showVendors', 2, function () {})">Trusted Partners</a> may process your data based on legitimate interest. In such case, you do not grant consent for the processing of your data, but you have the right to object to such processing. For this purpose, please use the slider named “CLI” (“Controller’s Legitimate Interest”).</p>
 
 <p><a href="https://polityka-prywatnosci.onet.pl/index.html" target="_blank" rel="noopener">At this link</a> you will find a detailed description of purposes of data processing for which you may grant your consent (or as the case may be withdraw it in part or in whole), and below you may find their types as proposed by IAB Europe:</p>
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Purposes:</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Purposes:</p>
 <ul style="list-style-position: inside; list-style-type: disc;">
 	<li style="margin-bottom: 10px">
 		1. Store and/or access information on a device
@@ -938,7 +939,7 @@ const embedTransaltion = {
 	</li>
 </ul>
 
-<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translation_purposes_header">Special functionalities:</p>
+<p style="margin: 25px 0 10px 0; font-weight: 900" class="cmp-translations_purposes_header">Special functionalities:</p>
 <ul style="list-style-position: inside; list-style-type: disc;">
 	<li style="margin-bottom: 10px">
 		1. Use precise geolocation data

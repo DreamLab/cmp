@@ -76,7 +76,6 @@ const shouldDisplay = () => {
 			};
 
 			const { getVendorList, getConsentData, getConsentDataTimeout } = config;
-
 			if (getVendorList) {
 				getVendorList((err, vendorList) => {
 					if (err) {
@@ -84,7 +83,7 @@ const shouldDisplay = () => {
 						const result = handleConsentResult();
 						resolve(result);
 					} else {
-						//ToDo remove assigment below before go to release
+						//ToDo remove assigment below before release
 						vendorList.translation = {
 							'version': 1616495767660,
 							'id': 28,
@@ -204,10 +203,10 @@ function start() {
 	};
 
 	config.update(configUpdates);
+
 	Promise.all([
 		shouldDisplay(),
 		config.getConsentData ? readExternalConsentData(config) : readConsentCookie()
-
 	]).then(([displayOptions, consentString]) => {
 		initializeStore(consentString, displayOptions.display).then(() => {
 			displayUI(window.__tcfapi, displayOptions);
