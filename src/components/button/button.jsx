@@ -14,8 +14,7 @@ export default class Button extends Component {
 			children,
 			onClick,
 			invert,
-			id,
-			ariaLabelledBy,
+			ariaLabelledBy
 		} = props;
 
 		return (
