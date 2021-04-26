@@ -35,19 +35,19 @@ export default class Intro extends Component {
 				</div>
 				<div class={style.options}>
 					<Button
-						ariaLabel='go to advanced settings'
 						class={style.rejectAll}
 						invert={true}
 						onClick={onShowPurposes}
+						ariaLabelledBy="showPurposes"
 					>
-						<LocalLabel localizeKey='showPurposes'>Manage your choices</LocalLabel>
+						<LocalLabel localizeKey='showPurposes' id="showPurposes">Manage your choices</LocalLabel>
 					</Button>
 					<Button
-						ariaLabel='accept and close'
+						ariaLabelledBy="acceptAll"
 						class={style.acceptAll}
 						onClick={onAcceptAll}
 					>
-						<LocalLabel localizeKey='acceptAll'>Got it, thanks!</LocalLabel>
+						<LocalLabel localizeKey='acceptAll' id="acceptAll">Got it, thanks!</LocalLabel>
 					</Button>
 				</div>
 			</div>
