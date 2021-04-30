@@ -1135,7 +1135,7 @@ const embedTransaltion = {
 
 <p>En cliquant sur «Accepter» ou en fermant cette fenêtre, vous consentez au traitement des données susmentionné par nous et par des tiers. Cliquez sur <a onclick="__tcfapi('showConsentDetailView', 2, function () {})">Paramètres</a> pour obtenir de plus amples informations sur le traitement des données et sur nos partenaires ou <a onclick="__tcfapi('showVendors', 2, function () {})">partenaires IAB</a>. Vous pouvez également y modifier vos préférences à tout moment.</p>
 
-<p><a href="https://www.blick.ch/services/datenschutzbestimmungen-id151553.html" target="_blank" rel="noopener">Datenschutz</a> | <a href="https://www.blick.ch/services/impressum/impressum-blick-gruppe-id5697115.html" target="_blank" rel="noopener">Impressum</a></p>`,
+<p><a href="https://www.blick.ch/services/datenschutzbestimmungen-id151553.html" target="_blank" rel="noopener">Protection des données</a> | <a href="https://www.blick.ch/services/impressum/impressum-blick-gruppe-id5697115.html" target="_blank" rel="noopener">Impressum</a></p>`,
 			acceptAll: ' Accepter et fermer',
 			showPurposes: 'Paramètres'
 		},
