@@ -87,6 +87,22 @@ export default class Store {
 		);
 	}
 
+	calculateCreatedTime = (created, now) => {
+		if (!created) {
+			return now;
+		}
+		const maxLifetimeMs = 12 * 30 * 24 * 60 * 60 * 1000; //12 months
+		const currrentTimestampMs = now.getTime();
+		const createdMs = new Date(created).getTime();
+
+		const diff = currrentTimestampMs - createdMs;
+
+		if (diff > maxLifetimeMs) {
+			return now;
+		}
+		return created;
+	};
+
 	/**
 	 * Persist all consent data to the cookie.  This data will NOT be filtered
 	 * by the vendorList and will include global consents set no matter what
@@ -108,7 +124,7 @@ export default class Store {
 		}
 
 		const now = new Date();
-		tcModel.created = tcModel.created || now;
+		tcModel.created = this.calculateCreatedTime(tcModel.created, now);
 		tcModel.lastUpdated = now;
 		tcModel.vendorListVersion = vendorListVersion;
 
@@ -141,7 +157,7 @@ export default class Store {
 	};
 
 	filterVendorConsents = (vendors) => {
-		const {vendorConsents, vendorLegitimateInterests} = this.tcModel;
+		const { vendorConsents, vendorLegitimateInterests } = this.tcModel;
 		const availableIds = new Set();
 
 		for (let key in vendors) {
@@ -173,7 +189,7 @@ export default class Store {
 	};
 
 	selectVendor = (vendorId, isSelected) => {
-		const {vendorConsents} = this.tcModel;
+		const { vendorConsents } = this.tcModel;
 		if (isSelected) {
 			vendorConsents.set(vendorId);
 		} else {
@@ -183,7 +199,7 @@ export default class Store {
 	};
 
 	selectVendors = (vendorIds, isSelected) => {
-		const {vendorConsents} = this.tcModel;
+		const { vendorConsents } = this.tcModel;
 		if (isSelected) {
 			vendorIds.forEach(id => {
 				vendorConsents.set(id);
@@ -210,7 +226,7 @@ export default class Store {
 	};
 
 	selectVendorLegitimateInterests = (vendorId, isSelected, update = true) => {
-		const {vendorLegitimateInterests} = this.tcModel;
+		const { vendorLegitimateInterests } = this.tcModel;
 		const hasLegInts = this.vendorList.vendors[vendorId].legIntPurposes.length > 0;
 
 		if (hasLegInts) {
@@ -232,7 +248,7 @@ export default class Store {
 
 
 	selectAllVendorLegitimateInterests = (isSelected, update = true) => {
-		const {vendorLegitimateInterests} = this.tcModel;
+		const { vendorLegitimateInterests } = this.tcModel;
 		const vendorsWithLegIntsIds = this.getVendorsWithLegIntsIds();
 
 		vendorsWithLegIntsIds.forEach(id => {
@@ -259,8 +275,8 @@ export default class Store {
 	};
 
 	selectPurpose = (purposeId, isSelected) => {
-		const {contractPurposeIds} = config;
-		const {purposeConsents} = this.tcModel;
+		const { contractPurposeIds } = config;
+		const { purposeConsents } = this.tcModel;
 
 		if (contractPurposeIds.includes(purposeId)) {
 			return;
@@ -281,7 +297,7 @@ export default class Store {
 	};
 
 	selectPurposeLegitimateInterests = (purposeId, isSelected) => {
-		const {purposeLegitimateInterests} = this.tcModel;
+		const { purposeLegitimateInterests } = this.tcModel;
 		if (isSelected) {
 			purposeLegitimateInterests.set(purposeId);
 		} else {
@@ -313,8 +329,8 @@ export default class Store {
 	};
 
 	selectPublisherPurpose = (purposeId, isSelected) => {
-		const {contractPurposeIds} = config;
-		const {publisherConsents} = this.tcModel;
+		const { contractPurposeIds } = config;
+		const { publisherConsents } = this.tcModel;
 
 		if (contractPurposeIds.includes(purposeId)) {
 			return;
@@ -329,13 +345,13 @@ export default class Store {
 	};
 
 	selectAllPublisherPurposes = (isSelected, update = true) => {
-		const {purposes = {}} = this.vendorList || {};
+		const { purposes = {} } = this.vendorList || {};
 		const operation = isSelected ? 'set' : 'unset';
-		const {legIntPurposeIds, contractPurposeIds} = config;
+		const { legIntPurposeIds, contractPurposeIds } = config;
 		const publisherLegalBasedPurposes = [...legIntPurposeIds, ...contractPurposeIds];
-		const availablePurposes = Object.values(purposes).map(({id}) => id).filter((purposeId) => !publisherLegalBasedPurposes.includes(purposeId));
+		const availablePurposes = Object.values(purposes).map(({ id }) => id).filter((purposeId) => !publisherLegalBasedPurposes.includes(purposeId));
 
-		Object.values(purposes).forEach(({id}) => {
+		Object.values(purposes).forEach(({ id }) => {
 			if (availablePurposes.includes(id)) {
 				this.tcModel.publisherConsents[operation](id);
 			}
@@ -347,10 +363,10 @@ export default class Store {
 	};
 
 	setAllContractPurposes = (update) => {
-		const {purposes = {}} = this.vendorList || {};
-		const {contractPurposeIds} = config;
+		const { purposes = {} } = this.vendorList || {};
+		const { contractPurposeIds } = config;
 
-		Object.values(purposes).forEach(({id}) => {
+		Object.values(purposes).forEach(({ id }) => {
 			if (contractPurposeIds.includes(id)) {
 				this.tcModel.publisherConsents.set(id);
 				this.tcModel.vendorConsents.set(id);
@@ -363,7 +379,7 @@ export default class Store {
 	};
 
 	selectPublisherLegitimateInterests = (purposeId, isSelected) => {
-		const {publisherLegitimateInterests} = this.tcModel;
+		const { publisherLegitimateInterests } = this.tcModel;
 		if (isSelected) {
 			publisherLegitimateInterests.set(purposeId);
 		} else {
@@ -373,11 +389,11 @@ export default class Store {
 	};
 
 	selectAllPublisherLegitimateInterests = (isSelected, update) => {
-		const {purposes = {}} = this.vendorList || {};
-		const {legIntPurposeIds} = config;
+		const { purposes = {} } = this.vendorList || {};
+		const { legIntPurposeIds } = config;
 		const operation = isSelected ? 'set' : 'unset';
 
-		Object.values(purposes).forEach(({id}) => {
+		Object.values(purposes).forEach(({ id }) => {
 			if (legIntPurposeIds.includes(id)) {
 				this.tcModel.publisherLegitimateInterests[operation](id);
 			}
@@ -431,7 +447,7 @@ export default class Store {
 		} = this.persistedConsentData;
 
 		const {
-			vendors = {},
+			vendors = {}
 		} = vendorList || {};
 
 		const persistedMaxVendorId = this.persistedConsentData.vendorConsents && this.persistedConsentData.vendorConsents.maxId || 0;
